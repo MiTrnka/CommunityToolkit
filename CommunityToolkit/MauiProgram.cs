@@ -28,20 +28,20 @@ public static class MauiProgram
         // AddSingleton - vytvoří se pouze jedna instance pro celou aplikaci.
         // AddTransient - vytvoří se nová instance pokaždé, když je služba vyžádána.
 
-        // Registrujeme náš nový MainViewModel. Bude existovat jen jedna jeho instance.
+        // Registrujeme MainViewModel. Bude existovat jen jedna jeho instance.
         builder.Services.AddSingleton<MainViewModel>();
-
         // Registrujeme i naši hlavní stránku. Bude se vytvářet nová instance při každém požadavku.
         builder.Services.AddTransient<MainPage>();
 
-
-
-        // Zaregistrujeme nový ViewModel a stránku pro nastavení.
+        // Zaregistrujeme ViewModel a stránku pro nastavení.
         builder.Services.AddTransient<SettingsViewModel>();
         builder.Services.AddTransient<SettingsPage>();
 
-        // Messenger se registruje automaticky jako singleton, pokud použijeme CommunityToolkit.Mvvm.
-        // Není potřeba ho explicitně přidávat, ale pro přehlednost:
+        // Explicitně zaregistrujeme výchozí implementaci IMessengeru jako singleton.
+        // Používáme WeakReferenceMessenger.Default, což je doporučená instance,
+        // která pomáhá předcházet únikům paměti (memory leaks).
+        // WeakReferenceMessenger.Default je již vytvořená instance třídy WeakReferenceMessenger, kterou předávám do DI kontejneru,
+        // aby mi ji mohl poskytovat všude tam, kde budu přes konstruktor vyžadovat IMessenger.Tato instance se stará o chytré doručování zpráv mezi různými částmi aplikace.
         builder.Services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
 
 

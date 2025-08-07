@@ -1,5 +1,5 @@
 ﻿// Soubor: SettingsViewModel.cs
-// Popis: ViewModel pro naši novou stránku s nastavením.
+// Popis: ViewModel pro stránku s nastavením.
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

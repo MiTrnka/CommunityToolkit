@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Messaging; // Přidáme using pro přístup k IMesse
 
 namespace CommunityToolkit;
 
+// ViewModel pro naši hlavní stránku, který mimo jiné se přihlásí k odběru zpráv o změně uživatelského jména na stránce nastavení.
 public partial class MainViewModel : ObservableObject
 {
     // Původní vlastnost pro text, který se zobrazuje.
@@ -28,10 +29,8 @@ public partial class MainViewModel : ObservableObject
         Text = "Vítej v aplikaci!";
         Name = "Uživatel"; // Můžeme vrátit výchozí hodnotu
 
-        // Zaregistrujeme tento ViewModel k příjmu zpráv typu UsernameChangedMessage.
-        // První parametr (WeakReferenceRecipient) zajišťuje, že pokud bude tento ViewModel
-        // zničen, registrace se automaticky zruší a předejde se memory leakům.
-        // Druhý parametr je akce (lambda funkce), která se má vykonat, když zpráva dorazí.
+        // Zaregistruje instanci tohoto ViewModelu (this) jako příjemce zpráv typu UsernameChangedMessage.
+        // Pokud někdo pošle zprávu tohoto typu, tato lambda funkce bude vyvolána a dostane zprávu jako parametr a odkaz na příjemce (recipient), tedy tento ViewModel.
         messenger.Register<UsernameChangedMessage>(this, (recipient, message) =>
         {
             // Když obdržíme zprávu, aktualizujeme naše vlastnosti.
