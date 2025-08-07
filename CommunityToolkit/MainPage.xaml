@@ -1,12 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CommunityToolkit.MainPage">
+             x:Class="CommunityToolkit.MainPage"
+             xmlns:local="clr-namespace:CommunityToolkit"
+             x:DataType="local:MainViewModel"
+             Title="Lekce 2: RelayCommand">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
+            Spacing="25"
+            VerticalOptions="Center">
+
+            <Label
+                Text="{Binding Text}"
+                FontSize="Large"
+                HorizontalOptions="Center" />
+
+            <Entry
+                Placeholder="Zadej své jméno"
+                Text="{Binding Name, Mode=TwoWay}"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Pozdravit"
+                Command="{Binding GreetCommand}"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Přejít do nastavení"
+                Command="{Binding GoToSettingsCommand}"
+                HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 
