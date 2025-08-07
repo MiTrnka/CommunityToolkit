@@ -35,7 +35,7 @@ public partial class MainViewModel : ObservableObject
         {
             // Když obdržíme zprávu, aktualizujeme naše vlastnosti.
             // message.Value obsahuje data, která byla se zprávou poslána.
-            Name = message.Value;
+            Name = message.NewUsername;
             Text = $"Vítej zpět, {Name}!";
         });
     }
